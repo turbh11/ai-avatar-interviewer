@@ -1,0 +1,33 @@
+--- הרחבה על פרויקטים טכניים (לשימוש בראיונות עומק) ---
+Project Title: Distributed Multiplayer Scrabble Game
+Role: Client-Side Architect & UI/Controller Developer (Part of a Development Team)
+Tech Stack: Java, JavaFX, TCP Sockets, MongoDB, Java Servlets, HTML/JS, React Native (Minor).
+
+1. High-Level System Overview
+The project is a fully functional, distributed multiplayer Scrabble game built from scratch in Java. It features a strict Model-View-Controller (MVC) architecture, real-time multiplayer capabilities via TCP sockets, a highly optimized standalone Dictionary Server for word validation, and persistent state management using MongoDB. The system supports a Host-Guest architecture where the Host acts as the single source of truth for the game state while simultaneously participating as a player.
+
+2. Architecture & Design Patterns
+Strict MVC Implementation: Complete decoupling of the UI (JavaFX) from the business logic.
+Observer Pattern: Used extensively. The Model acts as an Observable, notifying the ViewModel of state changes (e.g., score updates, turn changes). The ViewModel then updates the UI.
+Data Binding: Two-way data binding (bindBidirectional in JavaFX) connects the UI components directly to the ViewModel properties, ensuring synchronization without direct tight coupling.
+Coding to Interfaces: The Controller interacts only with a Model interface. This allowed seamless integration when swapping different Model implementations developed by different team members.
+
+3. My Specific Ownership & Contributions (Client-Side & Controller)
+UI/UX & Controller Logic: Owned the BoardController and ViewModel. Engineered the user interactions (tile placement, turn management) and the data flow from the UI to the backend.
+Concurrency & Thread Management (Crucial): Handled the critical task of maintaining a responsive UI during asynchronous network calls. Implemented safe UI updates using Platform.runLater() to ensure background threads (waiting for TCP responses from the Host/Dictionary) never blocked or crashed the Main JavaFX Application Thread.
+Integration: Successfully integrated a complex networking and logic Model (written by a teammate) into my Controller layer without altering the Controller's code, proving the effectiveness of the decoupled, interface-driven design.
+
+4. The Dictionary Server (Algorithmic Deep-Dive)
+A standalone TCP server responsible for validating words against large text files (books). To minimize expensive I/O disk operations, it uses a multi-layered caching architecture:
+Bloom Filter: An initial check using a BitSet and hash functions (MD5, SHA1) to provide an O(1) definitive "No" if a word does not exist, drastically reducing unnecessary searches.
+Cache Manager (LRU & LFU): Two active caches. An LRU (Least Recently Used) cache stores valid words, and an LFU (Least Frequently Used) cache stores invalid words.
+Parallel Searching: If a cache miss occurs, a ParIOSearcher spins up multiple threads to search the raw text files concurrently.
+
+5. Networking & Multi-threading
+Host-Guest Model: The Host holds the GameState (board, bags, scores). Guests send actions (e.g., "place word") via TCP through a GuestClientHandler.
+Thread Pools: The Dictionary Server uses an ExecutorService (FixedThreadPool) to handle multiple client socket connections concurrently without exhausting system resources.
+
+6. Database & Persistence (MongoDB)
+State Serialization: The complex, deeply nested GameState object is serialized into BSON/JSON documents and stored in MongoDB using MongoDbMethods.
+Save/Resume: Allows players to save an active game and reconstruct the full Java object hierarchy from the database later.
+Secondary Endpoints: A Java Servlet (GameSaveDB) exposes the database to a React Native mobile application for viewing high scores and saved games via HTTP.

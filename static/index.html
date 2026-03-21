@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barak's AI Agent</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .app-container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: #1a1a1a;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .lang-switch {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            background: #333;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #aaa;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        
+        .lang-btn.active {
+            background: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px 20px;
+            border-bottom: 1px solid #333;
+            background: #222;
+        }
+        
+        .avatar-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.1s;
+        }
+        
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        h1 {
+            margin: 15px 0 5px;
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        
+        .links-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn-link {
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            background: #333;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border: 1px solid #555;
+        }
+        
+        .btn-link:hover {
+            background: #444;
+        }
+        
+        .btn-link.primary {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+        
+        .chat-area {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            scroll-behavior: smooth;
+        }
+        
+        .message {
+            padding: 12px 18px;
+            border-radius: 20px;
+            max-width: 80%;
+            line-height: 1.5;
+            font-size: 1rem;
+            animation: popIn 0.3s ease;
+            direction: auto;
+        }
+        
+        .msg-user {
+            align-self: flex-start;
+            background: #007bff;
+            border-bottom-right-radius: 3px;
+        }
+        
+        .msg-agent {
+            align-self: flex-end;
+            background: #333;
+            border-bottom-left-radius: 3px;
+            border: 1px solid #444;
+        }
+        
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .controls {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #222;
+            border-top: 1px solid #333;
+            gap: 10px;
+        }
+        /* כפתורי השאלות המהירות */
+        
+        .suggestions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 5px;
+            width: 100%;
+        }
+        
+        .chip {
+            background: #333;
+            color: #ccc;
+            border: 1px solid #555;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        
+        .chip:hover {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        
+        .mic-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .mic-btn {
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mic-btn.listening {
+            background-color: #ff0000;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(255, 0, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+            }
+        }
+        
+        #status-text {
+            margin-top: 10px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .text-input-container {
+            display: flex;
+            width: 100%;
+            background: #333;
+            border-radius: 25px;
+            padding: 5px 15px;
+            box-sizing: border-box;
+            align-items: center;
+        }
+        
+        .text-input-container input {
+            flex-grow: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            padding: 10px;
+            outline: none;
+            direction: auto;
+        }
+        
+        .text-input-container input::placeholder {
+            color: #888;
+        }
+        
+        .send-btn {
+            background: none;
+            border: none;
+            color: #4CAF50;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: 0.2s;
+        }
+        
+        .send-btn:hover {
+            color: #45a049;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <div class="lang-switch">
+            <button id="btnEn" class="lang-btn" onclick="setLanguage('en')">EN</button>
+            <button id="btnHe" class="lang-btn active" onclick="setLanguage('he')">HE</button>
+        </div>
+
+        <div class="header">
+            <div class="avatar-container" id="avatar"><img src="/avatar.jpg" alt="ברק"></div>
+            <h1 id="mainTitle">הסוכן של ברק</h1>
+            <div class="links-container">
+                <a href="/Barak_Ben_Acon_Resume.pdf" target="_blank" class="btn-link primary" id="btnCv" download>📄 הורד קורות חיים</a>
+                <a href="https://www.linkedin.com/in/barak-ben-acon-71273b224/" target="_blank" class="btn-link">💼 LinkedIn</a>
+                <a href="https://github.com/turbh11/MyProjects" target="_blank" class="btn-link">💻 GitHub</a>
+            </div>
+        </div>
+
+        <div class="chat-area" id="chatBox">
+            <div class="message msg-agent" id="defaultWelcome" dir="auto"></div>
+        </div>
+
+        <div class="controls">
+            <div class="suggestions" id="suggestionsBox"></div>
+
+            <div class="mic-area">
+                <button class="mic-btn" id="micBtn">🎤</button>
+                <div id="status-text">לחץ כדי לדבר</div>
+            </div>
+
+            <div class="text-input-container">
+                <input type="text" id="textInput" placeholder="או הקלד הודעה כאן...">
+                <button id="sendBtn" class="send-btn">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'he';
+        const urlParams = new URLSearchParams(window.location.search);
+        const company = urlParams.get('company');
+        let isFirstMessage = true;
+
+        const texts = {
+            'he': {
+                title: "הסוכן של ברק",
+                cv: "📄 הורד קורות חיים",
+                welcome: "שלום! אני הסוכן הווירטואלי של ברק. לחץ על המיקרופון או הקלד כדי להתחיל.",
+                listen: "לחץ כדי לדבר",
+                listening: "מקשיב...",
+                thinking: "חושב... ⏳",
+                errMic: "לא זיהיתי קול. נסה שוב.",
+                errSrv: "השרת קצת עמוס עכשיו, אנא נסה שוב בעוד רגע. 🚀",
+                placeholder: "או הקלד הודעה כאן...",
+                startInt: "👋 ראיון ל-"
+            },
+            'en': {
+                title: "Barak's Agent",
+                cv: "📄 Download CV",
+                welcome: "Hi! I'm Barak's virtual agent. Click the mic or type a message.",
+                listen: "Click to speak",
+                listening: "Listening...",
+                thinking: "Thinking... ⏳",
+                errMic: "Didn't catch that. Try again.",
+                errSrv: "The server is a bit busy right now, please try again in a moment. 🚀",
+                placeholder: "Or type a message here...",
+                startInt: "👋 Interview for "
+            }
+        };
+
+        const suggestionChips = {
+            'he': ["ספר לי על פרויקט Scrabble 🎮", "באילו טכנולוגיות אתה שולט? 💻", "מה האתגר הכי גדול שפתרת? 🚀"],
+            'en': ["Tell me about the Scrabble project 🎮", "What technologies do you know? 💻", "What's the biggest challenge you solved? 🚀"]
+        };
+
+        function renderSuggestions(lang) {
+            const box = document.getElementById('suggestionsBox');
+            box.innerHTML = '';
+            suggestionChips[lang].forEach(text => {
+                const btn = document.createElement('button');
+                btn.className = 'chip';
+                btn.innerText = text;
+                btn.onclick = () => {
+                    // מסיר את האימוג'י בשליחה כדי לא לבלבל את השרת
+                    const cleanText = text.replace(/🎮|💻|🚀/g, '').trim();
+                    sendToAgent(cleanText, false, true);
+                    box.style.display = 'none'; // מסתיר את הכפתורים אחרי לחיצה
+                };
+                box.appendChild(btn);
+            });
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('btnHe').classList.toggle('active', lang === 'he');
+            document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+            document.getElementById('mainTitle').innerText = texts[lang].title;
+            document.getElementById('btnCv').innerText = texts[lang].cv;
+            document.getElementById('status-text').innerText = texts[lang].listen;
+            document.getElementById('textInput').placeholder = texts[lang].placeholder;
+            recognition.lang = lang === 'he' ? 'he-IL' : 'en-US';
+
+            renderSuggestions(lang);
+
+            if (company) {
+                document.getElementById('defaultWelcome').innerText = lang === 'he' ?
+                    `שלום צוות הגיוס של ${company}! כאן הסוכן של ברק. לחצו על המיקרופון או הקלידו כדי להתחיל בראיון.` :
+                    `Hi ${company} team! I'm Barak's virtual agent. Click the mic or type to start the interview.`;
+            } else {
+                document.getElementById('defaultWelcome').innerText = texts[lang].welcome;
+            }
+        }
+
+        let sessionId = localStorage.getItem("barak_session_id");
+        if (!sessionId) {
+            sessionId = "sess_" + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem("barak_session_id", sessionId);
+        }
+
+        const micBtn = document.getElementById('micBtn');
+        const statusText = document.getElementById('status-text');
+        const chatBox = document.getElementById('chatBox');
+        const avatar = document.getElementById('avatar');
+        const textInput = document.getElementById('textInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.interimResults = false;
+        setLanguage(currentLang);
+
+        const audioPlayer = new Audio();
+        let audioCtx, analyser, dataArray, isAudioInitialized = false;
+
+        function initAudio() {
+            if (isAudioInitialized) return;
+            audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+            analyser = audioCtx.createAnalyser();
+            const source = audioCtx.createMediaElementSource(audioPlayer);
+            source.connect(analyser);
+            analyser.connect(audioCtx.destination);
+            analyser.fftSize = 256;
+            dataArray = new Uint8Array(analyser.frequencyBinCount);
+            isAudioInitialized = true;
+        }
+
+        function animateAvatar() {
+            if (audioPlayer.paused) {
+                avatar.style.transform = 'scale(1)';
+                avatar.style.boxShadow = '0 0 15px rgba(0,0,0,0.5)';
+                return;
+            }
+            requestAnimationFrame(animateAvatar);
+            analyser.getByteFrequencyData(dataArray);
+            let sum = 0;
+            for (let i = 0; i < dataArray.length; i++) sum += dataArray[i];
+            let average = sum / dataArray.length;
+            let scale = 1 + (average / 255) * 0.15;
+            let glow = (average / 255) * 40;
+            avatar.style.transform = `scale(${scale})`;
+            avatar.style.boxShadow = `0 0 ${glow}px #4CAF50`;
+        }
+
+        audioPlayer.onplay = () => {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            animateAvatar();
+        };
+
+        function typeWriter(text, element, speedOrDuration, isDuration = true) {
+            let i = 0;
+            element.innerHTML = "";
+            let speed = isDuration ? ((speedOrDuration / text.length) * 0.8) : speedOrDuration;
+            if (isDuration && speed > 45) speed = 45;
+            if (isDuration && speed < 15) speed = 15;
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        function appendBubble(sender, text, isHidden = false) {
+            if (isHidden) return null;
+            const div = document.createElement('div');
+            div.className = `message ${sender === 'user' ? 'msg-user' : 'msg-agent'}`;
+            div.innerText = text;
+            div.dir = "auto";
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            return div;
+        }
+
+        async function sendToAgent(text, isHidden = false, isTextOnly = false) {
+            if (!isTextOnly) audioPlayer.pause();
+
+            document.getElementById('suggestionsBox').style.display = 'none'; // הסתרת כפתורים ברגע שמתחילים לדבר
+
+            appendBubble('user', text, isHidden);
+            statusText.innerText = "...";
+            const loadingDiv = appendBubble('agent', texts[currentLang].thinking, isHidden);
+
+            let finalMessage = text;
+            if (isFirstMessage && company && !isHidden) {
+                let context = currentLang === 'he' ?
+                    `[הערת מערכת לג'מיני: המראיין שמדבר איתך עכשיו הוא מצוות הגיוס של חברת ${company}. התייחס לזה בתשובה שלך בקצרה ובהתלהבות.] ` :
+                    `[System note: The interviewer is from ${company}. Acknowledge this briefly.] `;
+                finalMessage = context + text;
+                isFirstMessage = false;
+            }
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: finalMessage,
+                        session_id: sessionId,
+                        language: currentLang,
+                        text_only: isTextOnly
+                    })
+                });
+
+                if (!response.ok) throw new Error("Server Error");
+                const data = await response.json();
+
+                if (data.audio_ready) {
+                    statusText.innerText = "...";
+                    audioPlayer.src = `/api/audio/${sessionId}?t=${new Date().getTime()}`;
+                    audioPlayer.onloadedmetadata = () => {
+                        const durationMs = audioPlayer.duration * 1000;
+                        if (loadingDiv) typeWriter(data.text, loadingDiv, durationMs, true);
+                        audioPlayer.play();
+                    };
+                } else {
+                    statusText.innerText = texts[currentLang].listen;
+                    if (loadingDiv) typeWriter(data.text, loadingDiv, 15, false);
+                }
+            } catch (e) {
+                console.error(e);
+                if (loadingDiv) loadingDiv.innerText = texts[currentLang].errSrv;
+            }
+        }
+
+        recognition.onend = () => {
+            micBtn.classList.remove('listening');
+            if (statusText.innerText === texts[currentLang].listening) {
+                statusText.innerText = texts[currentLang].errMic;
+            }
+        };
+
+        recognition.onresult = (event) => {
+            sendToAgent(event.results[0][0].transcript, false, false);
+        };
+
+        micBtn.onclick = () => {
+            initAudio();
+            audioPlayer.pause();
+            try {
+                recognition.start();
+                micBtn.classList.add('listening');
+                statusText.innerText = texts[currentLang].listening;
+            } catch (e) {}
+        };
+
+        function handleTextSubmit() {
+            const val = textInput.value.trim();
+            if (val !== "") {
+                textInput.value = '';
+                sendToAgent(val, false, true);
+            }
+        }
+
+        sendBtn.onclick = handleTextSubmit;
+        textInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') handleTextSubmit();
+        });
+    </script>
+</body>
+
+</html>

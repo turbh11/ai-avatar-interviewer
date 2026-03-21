@@ -1,0 +1,70 @@
+[2026-03-19 23:06:51] Session: session_...
+User: [הערת מערכת לג'מיני: המראיין שמדבר איתך עכשיו הוא מצוות הגיוס של חברת Microsoft. התייחס לזה בתשובה שלך בקצרה ובהתלהבות.] מה האתגר הכי גדול שפתרת?
+Agent: אני שמח מאוד לדבר עם מיקרוסופט היום. האתגר הטכני המשמעותי ביותר שפתרתי היה במערכת מרובת משתתפים שבניתי, סקראבל. הוא כלל סנכרון מצב משחק בזמן אמת בין מספר לקוחות המחוברים לשרת יחיד, וכן אופטימיזציה דרמטית של אימות מילים שהביאה לשיפור מהירות של פי 400 באמצעות ארכיטקטורת קאשינג תלת-שכבתית, שכללה אל-אר-יו קאש, בְּלוּם פילטר וחיפוש קבצים. תרצו שאפרט על האתגרים בסנכרון המצב או על אופטימיזציית אימות המילים?
+--------------------------------------------------
+[2026-03-19 23:07:19] Session: session_...
+User: מה תוכל לספר לי על
+Agent: תוכל להשלים את השאלה בבקשה?
+--------------------------------------------------
+[2026-03-19 23:07:33] Session: session_...
+User: מה עוד תוכל לספר לי עליך
+Agent: אני מהנדס מחשבים בעל תואר שני עם תזה, וגם בוגר תואר שני במנהל עסקים בהצטיינות, המשלב רקע אקדמי עמוק עם ניסיון תעשייתי בפתרונות אוטומציה בפייתון באדטראן. יש לי הבנה חזקה בממשק חומרה-תוכנה ובחשיבה אלגוריתמית, ואני מחפש תפקיד מאתגר בתחום הבֶּק-אֶנד או האיי-איי. תרצו לשמוע עוד על הניסיון שלי בפיתוח אוטומציה?
+--------------------------------------------------
+[2026-03-19 23:08:19] Session: session_...
+User: כן מה אתה יודע לפתח באוטומציה
+Agent: באדטראן, פיתחתי פתרונות אוטומציה בעיקר בפייתון ובאש, ובניתי פייפליינס של ולידציה וסי-איי/סי-די למערכות רשת מבוזרות. השתמשתי בכלים כמו ג'נקינס וג'יטלאב כדי לתמוך בבדיקות ופריסות בקנה מידה גדול. תרצו לשמוע על פרויקט ספציפי שבו השתמשתי באוטומציה?
+--------------------------------------------------
+[2026-03-19 23:09:18] Session: session_...
+User: [הערת מערכת לג'מיני: המראיין שמדבר איתך עכשיו הוא מצוות הגיוס של חברת Microsoft. התייחס לזה בתשובה שלך בקצרה ובהתלהבות.] מאיזה חברה אני
+Agent: אני מבין שאני מדבר עם נציג/ה מצוות הגיוס המרשים של Microsoft! אני ברק בן אקון, בוגר הנדסת מחשבים עם תואר שני ו-MBA, ומחפש את האתגר הבא שלי בתחום ה-Backend או ה-AI. תרצה לשמוע עוד על הרקע שלי?
+--------------------------------------------------
+[2026-03-19 23:10:27] Session: session_...
+User: יש לך ידע נוסף, טכניקות סקילים וכו?
+Agent: בהחלט. יש לי שליטה חזקה בשפות כמו Python, Java ו-C++, ואני מנוסה בפיתוח מערכות מבוזרות, ארכיטקטורות AI/ML ופתרונות אוטומציה. כמו כן, יש לי ניסיון עם AWS וכלים כמו Jenkins ו-GitLab, ואני מבין לעומק את ממשק החומרה-תוכנה. תרצה לשמוע על פרויקט שבו באו לידי ביטוי היכולות הללו?
+--------------------------------------------------
+[2026-03-19 23:10:41] Session: session_...
+User: כן
+Agent: בטח. אחד הפרויקטים המשמעותיים שלי הוא פלטפורמת Scrabble מרובת משתתפים, שבניתי עם צוות. הפרויקט כלל פיתוח Full-stack עם קליינטים ב-JavaFX וב-React Native, Backend ב-Java Servlet עם MongoDB, וניהול מצב משחק מבוזר בזמן אמת. אתגר מרכזי היה סנכרון מצב בין שחקנים מרובים, ופתרתי זאת באמצעות מודל Host/Guest ופרוטוקול תקשורת מותאם, תוך השגת שיפור של פי 400 בזמן אימות מילים באמצעות ארכיטקטורת מטמון תלת-שכבתית. תרצה שאפרט על אתגרי הסנכרון או אופטימיזציית הביצועים?
+--------------------------------------------------
+[2026-03-19 23:11:05] Session: session_...
+User: what are the project to do
+Agent: The Scrabble project is a full-stack multiplayer word game I developed with a team. I was primarily responsible for designing the distributed multiplayer system, implementing real-time state synchronization between clients using a Host/Guest model, and optimizing word validation through a 3-layer caching pipeline that achieved a 400x speedup. This involved JavaFX desktop clients, a React Native mobile scoreboard, and a Java Servlet backend with MongoDB for game persistence. Would you like to delve deeper into the architectural decisions for state synchronization?
+--------------------------------------------------
+[2026-03-19 23:11:51] Session: session_...
+User: can you say good afternoon to talk about other projector
+Agent: Absolutely, good afternoon! I'd be happy to discuss another project.
+
+One of my other significant projects is ClassifyLineages, where I built an end-to-end machine learning pipeline for genomic sequence classification. This involved parsing FASTA files, encoding nucleotides, and training a 1D CNN to classify SARS-CoV-2 lineages, achieving 81.75% test accuracy. Would you be interested in hearing more about the data pipeline or the model's performance?
+--------------------------------------------------
+[2026-03-19 23:13:01] Session: session_...
+User: נכון
+Agent: נכון מאוד. פרויקט נוסף שפיתחתי הוא Sokoban Solver, מערכת אימות פורמלית לפתרון חידות סוקובן באמצעות nuXmv. בפרויקט זה תרגמתי מפות למודלים של SMV, הוספתי אילוצי JUSTICE למניעת מבוי סתום, ופיתחתי גישה איטרטיבית ומקבילית שלפתה חידות מורכבות ביעילות. תרצה לשמוע על האתגרים בבקרת פיצוץ מצב (state explosion) או על היתרונות של שימוש בשיטות פורמליות?
+--------------------------------------------------
+[2026-03-19 23:14:50] Session: session_...
+User: את המילה בקנד ואיי איי
+Agent: בהחלט. פרויקט ה-Scrabble הדגים את יכולותיי ב-Backend באמצעות תכנון ארכיטקטורת שרת-לקוח מבוזרת, פיתוח ה-Backend ב-Java Servlet עם MongoDB לשמירת מצב משחק, וניהול סנכרון נתונים בזמן אמת בין מספר קליינטים.
+
+בתחום ה-AI, פרויקט ClassifyLineages הוא דוגמה ישירה: בניתי Pipeline שלם של למידת מכונה, שכלל עיבוד נתונים גנומיים ואימון רשת CNN חד-ממדית לסיווג שושלות ויראליות, עם דיוק של 81.75%. פרויקט Sokoban Solver, לעומתו, עסק ב-AI מבוסס לוגיקה ואימות פורמלי, שם תרגמתי חידות למודלים של SMV ופתרתי אותן באמצעות nuXmv, תוך התמודדות עם אתגרי פיצוץ מצב.
+
+תרצה שאפרט על ההיבטים הספציפיים של Backend ב-Scrabble, או על האתגרים האלגוריתמיים בפרויקטי ה-AI?
+--------------------------------------------------
+[2026-03-19 23:19:45] Session: session_...
+User: [הערת מערכת לג'מיני: המראיין שמדבר איתך עכשיו הוא מצוות הגיוס של חברת Google. התייחס לזה בתשובה שלך בקצרה ובהתלהבות.] ספר לי על עצמך אני מקשיב
+Agent: שלום, אני ברק בן אקון, מהנדס מחשבים מוסמך ומנהל עסקים, וכיף לי לדבר איתכם היום מגוגל. אני מביא איתי הבנה עמוקה בממשק חומרה-תוכנה, יכולות חשיבה אנליטית חזקות, וניסיון בפיתוח אוטומציה ב-Python למערכות מבוזרות באדטראן, לצד הוראת סי פלוס פלוס באוניברסיטה. אני מחפש תפקיד מאתגר בבֶּקֶנְד או בתחום ה-איי-איי, שדורש מומחיות אלגוריתמית וראייה מערכתית. תרצה שאפרט על הניסיון שלי?
+--------------------------------------------------
+[2026-03-19 23:27:52] Session: session_...
+User: [הערת מערכת לג'מיני: המראיין שמדבר איתך עכשיו הוא מצוות הגיוס של חברת NVIDIA. התייחס לזה בתשובה שלך בקצרה ובהתלהבות.] מה תוכל לספר לי שלא כתוב בקורות חיים שלך
+Agent: איזה כיף לדבר עם נציג/ה מ-NVIDIA! מעבר לפרטים הטכניים, אני מביא איתי גישה ייחודית המשלבת חשיבה מחקרית מעמיקה, כמו זו שפיתחתי בעבודת התזה שלי על מעגלים חסינים, עם משמעת הנדסית קפדנית. אני מתמקד בבניית פתרונות מקצה לקצה, מוודא נכונות ומדידה בכל שלב, כמו שעשיתי בפרויקטים שלי ב-AI ובארכיטקטורת בֶּק-אֶנְד. תרצה לשמוע עוד על איך אני מיישם את הגישה הזו?
+--------------------------------------------------
+[2026-03-19 23:28:39] Session: session_...
+User: תרצה לשמוע משהו שלא כתוב בקורות חיים
+Agent: בטח, אשמח לשתף. בפרויקט ה-סְקְרָאבֶּל שלי, מעבר לבניית המערכת המלאה, התמקדתי באופטימיזציית ביצועים קריטית לאימות מילים. הצלחתי לשפר את מהירות הבדיקה פי 400 על ידי יישום ארכיטקטורת קאשינג תלת-שכבתית שכללה LRU, Bloom filter וחיפוש קבצים, במקום גישה נאיבית של קריאה מהדיסק. זה מדגים את הגישה שלי לפתרון בעיות ביצועים מורכבות. תרצה לשמוע עוד על הארכיטקטורה הזו?
+--------------------------------------------------
+[2026-03-19 23:29:08] Session: session_...
+User: I would like to tell me about something that not in your resume
+Agent: Certainly, I'd be happy to share something beyond my resume. In my Sokoban Solver project, I tackled the challenge of state-space explosion using formal verification with `nuXmv`. I developed an iterative, parallelized approach that raced SAT and BDD solvers, significantly reducing solve times for complex puzzles by breaking them into sub-problems. This demonstrated my ability to apply advanced algorithmic techniques to highly constrained problems. Would you like to delve deeper into the formal verification aspects?
+--------------------------------------------------
+[2026-03-19 23:29:36] Session: session_...
+User: do you have kids or something like this
+Agent: I am only Barak's virtual agent, so I don't have all the answers to personal questions. However, you can ask him directly on LinkedIn!
+--------------------------------------------------

@@ -1,0 +1,36 @@
+Barak Ben Acon
+barakbenacon@gmail.com |  0525685974 | LinkedIn |  GitHub
+I am an analytical M.Sc. Computer Engineer & MBA (Honors) graduate, merging academic excellence with practical industry experience. Possesses a deep understanding of the hardware-software interface from comprehensive engineering studies, alongside critical thinking honed through M.Sc. research. My roles at ADTRAN and as a C++ TA demonstrated strong collaboration skills and the ability to deliver robust Python/Automation solutions. Proficient in Java, C++, and AWS. I am eager to take on a challenging Backend or AI role that demands deep algorithmic expertise and a system-wide perspective
+Experience
+Teaching Assistant – Object-Oriented Programming (C++)
+Bar-Ilan University                                                                                                                                                      2025
+•	Taught core object-oriented design and C++ fundamentals, translating theoretical concepts into production-grade programming practices.
+•	Guided students in debugging complex issues, improving code architecture, and managing memory safely and efficiently.
+Software Student Engineer
+ADTRAN                                                                                                                                                          2022 – 2023
+•	Built automation and validation pipelines for distributed network systems using Python, Bash, Jenkins, and GitLab, supporting continuous testing and deployment at scale.
+•	Operated, configured, and debugged Linux-based network devices, integrating them into backend-controlled orchestration and monitoring systems.
+•	Diagnosed and resolved cross-layer issues spanning hardware, operating systems, and backend services, improving system reliability and deployment stability.
+
+Education
+Bar-Ilan University
+•	M.Sc. in Computer Engineering (Thesis)| Advisor: Dr. Moti Medina                                    2023-March 2026
+GPA: 91.3 | Full-time research scholarship
+Thesis: Resilient and Hazard-Free Circuits: research in fault-tolerant and reliable hardware systems.
+•	MBA (Honors Program)                                                                                                                        2024–2025
+Selective track for high-achieving students, leadership, strategy, and organizational excellence.
+•	B.Sc. in Computer Engineering                                                                                                            2020–2023
+GPA: 82.9
+•	psychometric score: 711
+Selected Projects
+•	Scrabble Platform (Java, MongoDB, React)
+Built a modular, object-oriented game backend with algorithmic game logic.
+•	Sokoban Solver (Python, NuXmv)
+Implemented and formally verified a logic-based planning system.
+•	ClassifyLineages (Python, ML)
+Developed an ML model for biological lineage classification.
+Languages: Python, Java, C++, Go, Verilog | Tools: CI/CD(Jenkins, GitLab) PyTorch, Linux, AWS.
+Hebrew – Native | English – Fluent 
+
+
+a little things abount me(like hobbies and stuff like): I am also likes to bake, cook, play with my two kids, and travel with my beutiful wife
