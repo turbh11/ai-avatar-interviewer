@@ -1,6 +1,6 @@
 from google import genai
 
-API_KEY = "AIzaSyC9IU3RGGdubiQUCbUrTC1QSV6ug_xH-Iw"
+API_KEY = "API-key"
 client = genai.Client(api_key=API_KEY)
 
 print("--- מחפש מודלים זמינים למפתח שלך ---")
