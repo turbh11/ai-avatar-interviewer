@@ -283,6 +283,14 @@ async def get_audio(session_id: str, background_tasks: BackgroundTasks):
         background_tasks.add_task(remove_file, filename)
         return FileResponse(filename, media_type="audio/mpeg")
     return {"error": "File not found"}
+# --- חדש! טיפול בבקשות HEAD עבור UptimeRobot ---
+@app.head("/")
+async def head_root():
+    return {"status": "ok"}
+
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # התיקון הקריטי עבור Render
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
+
